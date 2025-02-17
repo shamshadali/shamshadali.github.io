@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All about me</title>
+    <title>All about Shamshad Ali</title>
     <style>
         body {
             background-color: #282828;
@@ -71,6 +71,31 @@
             color: #4a90e2;
             text-decoration: underline;
         }
+        /* Add this to your existing <style> section */
+        .tabs {
+            display: flex;
+            gap: 0.2rem;
+            margin-bottom: 0rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            background-color: #333;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .tab:hover {
+            background-color: #4a90e2;
+        }
+
+        .tab.active {
+            background-color: #4a90e2;
+        }        
 
         @media (max-width: 768px) {
             .header {
@@ -79,19 +104,62 @@
             }
         }
     </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Hide all sections initially except the first one
+        const sections = document.querySelectorAll('section.section');
+        const tabs = document.querySelectorAll('.tab');
+        
+        // Show first section by default
+        sections.forEach((section, index) => {
+            if (index !== 0) {
+                section.style.display = 'none';
+            }
+        });
+        tabs[0].classList.add('active');
+
+        // Add click handlers to tabs
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Hide all sections
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                
+                // Show selected section
+                const targetId = tab.getAttribute('href').substring(1);
+                document.getElementById(targetId).style.display = 'block';
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+            });
+        });
+    });
+</script>    
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <img src="https://github.com/shamshadali/shamshadali.github.io/blob/master/shamshad_photo.jpeg" alt="Profile Photo" class="profile-img">
+            <img src="shamshad_photo.jpeg" alt="Profile Photo" class="profile-img">
             <div class="bio">
                 <h1>Shamshad Ali</h1>
                 <p>Director Software Engineering</p>
-                <p>Berlin, DE | <a href="mailto:shamshad1005.ali@gmail.com">shamshad1005.ali@gmail.com</a> | <a href="https://www.linkedin.com/in/shamshadali/">LinkedIn</a></p>
+                <p>Berlin, DE | <a href="mailto:shamshad1005.ali@gmail.com">shamshad1005.ali@gmail.com</a> | <a href="">LinkedIn</a></p>
             </div>
         </header>
-
-        <section class="section">
+        <div class="tabs">
+            <a href="#about" class="tab">About Me</a>
+            <a href="#skills" class="tab">Skills</a>
+            <a href="#experience" class="tab">Experience</a>
+            <a href="#github" class="tab">Github</a>
+            <a href="#workwithme" class="tab">Connect with me</a>
+        </div>
+        <section class="section" id="about">
             <h2>About Me</h2>
             <div>
                 <p>Technical Leadership & Architecture
@@ -103,9 +171,9 @@
                         <li>Backend: Java, SpringBoot, GoLang</li>
                         <li>Databases: MySQL, DynamoDB, Couchbase</li>
                         <li>Message Brokers: Apache Kafka</li>
-                        <li>Search & Analytics: Apache Solr</li>
+                        <li>Search & Analytics: Solr, ElasticSearch</li>
                         <li>Cloud & DevOps: AWS (Lambda, Step Functions), Docker, Jenkins</li>
-                        <li>API Technologies: GraphQL, gRPC, Protocol Buffers</li>
+                        <li>API Technologies: GraphQL, gRPC, Protocol Buffers, REST</li>
                         <li>Version Control: Git</li>
                     </ul>
                 </p>
@@ -139,7 +207,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="skills">
             <h2>Skills</h2>
             <div class="skills-grid">
                 <div class="skill-item">Java/J2EE</div>
@@ -152,7 +220,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="experience">
             <h2>Experience</h2>
             <div class="experience-item">
                 <h3>Care.com</h3>
@@ -187,7 +255,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="github">
             <h2>Github Profile</h2>
             <div class="experience-item">
                 <p>
@@ -203,8 +271,33 @@
                         </li>
                     </ul>
                 </p>
+            </div>  
+            <h2>Whats cooking?</h2>
+            <div class="experience-item">
+                <p>
+                    Currently learning Python and how to train ML model with custom data.
+                </p>
             </div>        
-        </section>        
+
+        </section>   
+        <section class="section" id="workwithme">
+            <h2>I am always learning something</h2>
+            <div class="experience-item">
+                <p>
+                    <ul>
+                        <li>Looking for a solution to a system design problem in distributed system architecture? </li>
+                        <li>Need help in finding out best approach to migrate monolith to microservices?</li>
+                        <li>Or just want to connect with like minded techno and exchange ideas or problem statements?</li>
+                    </ul>
+                </p>
+                <p>
+                    I would love to solve a system design problem with you. 
+                </p>
+                <p>
+                    Please send me an <a href="mailto:shamshad1005.ali@gmail.com">email</a> with the problem statement. I will be happy to jump on a call & discuss potentials solutions with you.
+                </p>
+            </div>        
+        </section>              
     </div>
 </body>
 </html>
